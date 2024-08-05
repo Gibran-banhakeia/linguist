@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gibran Banhakeia - Translator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+        body {
+            background: radial-gradient(circle, #000033, #000055, #000077);
+            color: #00FFFF;
+            font-family: 'Orbitron', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            perspective: 1000px;
+            position: relative;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .lightning-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .lightning {
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), transparent);
+            opacity: 0;
+            animation: lightningFlash 2s infinite ease-in-out;
+        }
+
+        .lightning.blue {
+            background: linear-gradient(to bottom, rgba(0, 0, 255, 0.8), transparent);
+        }
+
+        .lightning.green {
+            background: linear-gradient(to bottom, rgba(0, 255, 0, 0.8), transparent);
+        }
+
+        .lightning.red {
+            background: linear-gradient(to bottom, rgba(255, 0, 0, 0.8), transparent);
+        }
+
+        @keyframes lightningFlash {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        #main-container {
+            perspective: 2000px;
+            transform-style: preserve-3d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            height: 100%;
+            animation: parallax 10s infinite alternate;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        @keyframes parallax {
+            0% {
+                transform: translateZ(0);
+            }
+            100% {
+                transform: translateZ(50px);
+            }
+        }
+
+        .card {
+            background: linear-gradient(145deg, #004080, #001a33);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9);
+            transform: rotateX(10deg) rotateY(-10deg) translateZ(0);
+            transform-style: preserve-3d;
+            position: relative;
+            animation: float 6s infinite alternate ease-in-out;
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        @keyframes float {
+            0% {
+                transform: rotateX(10deg) rotateY(-10deg) translateZ(0);
+            }
+            100% {
+                transform: rotateX(15deg) rotateY(-15deg) translateZ(20px);
+            }
+        }
+
+        h1, h2, .contact-info, .signature {
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        h1 {
+            font-size: 3em;
+            text-transform: uppercase;
+            margin: 0;
+            color: #210f70;
+            text-shadow: 4px 4px 30px rgba(255, 255, 0, 1), /* Yellow shadow */
+                         -4px -4px 30px rgba(0, 255, 255, 1), /* Cyan shadow */
+                         4px -4px 30px rgba(255, 0, 0, 1), /* Red shadow */
+                         -4px 4px 30px rgba(0, 255, 0, 1), /* Green shadow */
+                         2px 2px 10px rgba(255, 255, 255, 1); /* White shadow */
+            transform: translateZ(80px);
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 4px 4px 30px rgba(255, 255, 0, 1), -4px -4px 30px rgba(0, 255, 255, 1), 4px -4px 30px rgba(255, 0, 0, 1), -4px 4px 30px rgba(0, 255, 0, 1), 2px 2px 10px rgba(255, 255, 255, 1); }
+            100% { text-shadow: 4px 4px 50px rgba(255, 255, 0, 1), -4px -4px 50px rgba(0, 255, 255, 1), 4px -4px 50px rgba(255, 0, 0, 1), -4px 4px 50px rgba(0, 255, 0, 1), 2px 2px 20px rgba(255, 255, 255, 1); }
+        }
+
+        h2 {
+            font-size: 2em;
+            margin: 20px 0;
+            color: #1d176c;
+            text-shadow: 4px 4px 30px rgb(215, 88, 19), /* Magenta shadow */
+                         -4px -4px 30px rgb(198, 72, 27), /* Yellow shadow */
+                         4px -4px 30px rgba(0, 255, 255, 1), /* Cyan shadow */
+                         -4px 4px 30px rgba(255, 0, 0, 1), /* Red shadow */
+                         2px 2px 10px rgba(255, 255, 255, 1); /* White shadow */
+            transform: translateZ(70px);
+            animation: glow 2s infinite alternate;
+        }
+
+        .contact-info {
+            font-size: 1.2em;
+            margin: 30px 0;
+            transform: translateZ(60px);
+            color: #00FFFF;
+            text-shadow: 4px 4px 30px rgba(255, 0, 255, 1), /* Magenta shadow */
+                         -4px -4px 30px rgba(255, 255, 0, 1), /* Yellow shadow */
+                         4px -4px 30px rgba(0, 255, 255, 1), /* Cyan shadow */
+                         -4px 4px 30px rgba(255, 0, 0, 1), /* Red shadow */
+                         2px 2px 10px rgba(255, 255, 255, 1); /* White shadow */
+        }
+
+        .contact-info p {
+            margin: 0;
+        }
+
+        .contact-info a {
+            color: #FFFFFF;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px;
+            background: linear-gradient(145deg, #00FFFF, #007777);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8),
+                        0 0 40px rgba(0, 255, 255, 0.6),
+                        0 0 60px rgba(0, 255, 255, 0.4);
+            transition: background 0.3s, box-shadow 0.3s;
+            transform: translateZ(50px);
+            margin: 5px 0;
+        }
+
+        .contact-info a:hover {
+            background: linear-gradient(145deg, #00FFFF, #009999);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 1),
+                        0 0 50px rgba(0, 255, 255, 0.9),
+                        0 0 70px rgba(0, 255, 255, 0.7);
+            text-decoration: underline;
+        }
+
+        .signature {
+            font-size: 2em;
+            margin-top: 50px;
+            color: #FFFF33;
+            text-shadow: 4px 4px 30px rgba(255, 255, 0, 1), /* Yellow shadow */
+                         -4px -4px 30px rgba(255, 0, 255, 1), /* Magenta shadow */
+                         4px -4px 30px rgba(0, 255, 255, 1), /* Cyan shadow */
+                         -4px 4px 30px rgba(255, 0, 0, 1), /* Red shadow */
+                         2px 2px 10px rgba(255, 255, 255, 1); /* White shadow */
+            transform: translateZ(50px);
+            animation: flicker 1.5s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .website-button {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            background: linear-gradient(145deg, #0a929c, #0f077d);
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(15, 32, 128, 0.8),
+                        0 0 40px rgba(67, 147, 200, 0.6),
+                        0 0 60px rgba(100, 13, 150, 0.4);
+            transition: background 0.3s, box-shadow 0.3s;
+            transform: translateZ(50px);
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .website-button:hover {
+            background: linear-gradient(145deg, #9e2914, #268eab);
+            box-shadow: 0 0 30px rgb(11, 65, 142),
+                        0 0 50px rgba(142, 16, 16, 0.9),
+                        0 0 70px rgba(171, 49, 8, 0.7);
+        }
+
+        .back-button {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            background: linear-gradient(145deg, #0e4e73, #1e93ce);
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.8),
+                        0 0 40px rgba(255, 0, 0, 0.6),
+                        0 0 60px rgba(255, 0, 0, 0.4);
+            transition: background 0.3s, box-shadow 0.3s;
+            transform: translateZ(50px);
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(145deg, #FF0000, #990000);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 1),
+                        0 0 50px rgba(255, 0, 0, 0.9),
+                        0 0 70px rgba(255, 0, 0, 0.7);
+        }
+
+        h1::before, h2::before, .contact-info::before, .signature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(145deg, #00FFFF, #00CCCC);
+            z-index: -1;
+            transform: translateZ(-10px);
+            clip-path: polygon(
+                0 0, 100% 0, 100% 100%, 0 100%
+            );
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 5px solid rgba(0, 255, 255, 1);
+            border-radius: 25px;
+            box-shadow: 0 0 50px rgba(0, 255, 255, 1), 
+                        0 0 70px rgba(0, 255, 255, 0.9),
+                        0 0 90px rgba(0, 255, 255, 0.7);
+            transform: translateZ(-20px);
+            z-index: -1;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .profile-photo {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin: 20px 0;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8),
+                        0 0 40px rgba(0, 255, 255, 0.6),
+                        0 0 60px rgba(0, 255, 255, 0.4);
+            transform: translateZ(50px);
+        }
+        
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="lightning-container">
+        <div class="lightning blue" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="lightning green" style="left: 30%; animation-delay: 0.5s;"></div>
+        <div class="lightning red" style="left: 50%; animation-delay: 1s;"></div>
+        <div class="lightning blue" style="left: 70%; animation-delay: 1.5s;"></div>
+        <div class="lightning green" style="left: 90%; animation-delay: 2s;"></div>
+    </div>
+    <div id="main-container" class="container glass">
+        <div class="card">
+            <img src="https://media.licdn.com/dms/image/D4E03AQEL7N_-0eK2VQ/profile-displayphoto-shrink_400_400/0/1702919910756?e=1728518400&v=beta&t=UpFr3NAm-D_BE4GOH8q8QT9pjWiJLPh4cNT28MeRtOA" alt="Gibran Banhakeia" class="profile-photo">
+            <h1>Gibran Banhakeia</h1>
+            <h2>Translator</h2>
+            <div class="contact-info">
+                <p><a href="mailto:gibranbtraduction@gmail.com">Email: gibranbtraduction@gmail.com</a></p>
+                <p><a href="https://gibrantranslator.com/" target="_blank">Website: gibrantranslator.com</a></p>
+            </div>
+            <div class="signature">Gibran Banhakeia</div>
+            <button class="website-button" onclick="loadWebsite()">Click Here Website</button>
+        </div>
+    </div>
+
+    <audio id="click-sound" src="https://www.soundjay.com/button/sounds/button-16.mp3"></audio>
+    <audio id="back-sound" src="https://www.soundjay.com/button/sounds/button-3.mp3"></audio>
+
+    <script>
+        function playSound(soundId) {
+            document.getElementById(soundId).play();
+        }
+
+        function loadWebsite() {
+            playSound('click-sound');
+            document.getElementById('main-container').innerHTML = `
+            <div class="container">
+                <!-- Home Section -->
+                <div class="section" id="home">
+                    <h1>Gibran Banhakeia</h1>
+                    <h2>Professional Translator</h2>
+                    <p>I'm Gibran Banhakeia, a professional translator specializing in African and North African languages, including Arabic, Berber, French, and English.</p>
+                </div>
+
+                <!-- About Section -->
+                <div class="section" id="about">
+                    <h2>About Me</h2>
+                    <p>In addition to my translation work, I am also a web developer. I am passionate about bridging linguistic gaps and facilitating effective communication. Whether through translation, web development, or academic research, my goal is to create connections and foster understanding across diverse cultures and languages..</p>
+                </div>
+
+                <!-- Services Section -->
+                <div class="section" id="services">
+                    <h2>Services</h2>
+                    <p>1.Document Translation
+2.Technical Translation
+3.Literary Translation
+4.Website Localization
+5.Business Translation
+6.Academic Translation
+7.Proofreading and Editing
+8.Transcription Services.</p>
+                </div>
+
+                <!-- Portfolio Section -->
+                <div class="section" id="portfolio">
+                    <h2>Portfolio</h2>
+                    <p>https://bold.pro/my/gibran-banhakeiaphd.</p>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="section" id="contact">
+                    <h2>Contact</h2>
+                    <p>Get in touch with me for your translation needs.</p>
+                    <a href="mailto:gibranbtraduction@gmail.com" class="btn">Email Me</a>
+                    <div class="btn-container">
+                        <button class="back-button" onclick="loadFirstCSS()">Back</button>
+                    </div>
+                </div>
+            </div>
+            `;
+        }
+
+        function loadFirstCSS() {
+            playSound('back-sound');
+            document.getElementById('main-container').innerHTML = `
+            <div class="card">
+                <img src="https://via.placeholder.com/150" alt="Gibran Banhakeia" class="profile-photo">
+                <h1>Gibran Banhakeia</h1>
+                <h2>Translator</h2>
+                <div class="contact-info">
+                    <p><a href="mailto:gibranbtraduction@gmail.com">Email: gibranbtraduction@gmail.com</a></p>
+                    <p><a href="https://gibrantranslator.com/" target="_blank">Website: gibrantranslator.com</a></p>
+                </div>
+                <div class="signature">Gibran Banhakeia</div>
+                <button class="website-button" onclick="loadWebsite()">Click Here Website</button>
+            </div>
+            `;
+        }
+    </script>
+</body>
+</html>
